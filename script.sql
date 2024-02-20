@@ -33,3 +33,21 @@ CREATE TABLE CityDemographics (
 
 --alters table named PropertyDetails, drops the columns in that table named CityPopulation, State, and Country, this removes transitive dependencies from the PropertyDetails table
 ALTER TABLE PropertyDetails DROP COLUMN CityPopulation, DROP COLUMN State, DROP COLUMN Country;
+
+--part4
+--creates table called PropertyZoning, this moves a multi-valued dependency to its own table
+CREATE TABLE PropertyZoning (
+    PropertyZoningID SERIAL PRIMARY KEY,--creates a serial primary key column named PropertyZoningID
+    PropertyID INT REFERENCES PropertyDetails(PropertyID),--creates a PropertyID column with an integer type that references the PropertyID column in the PropertyDetails table
+    ZoningType VARCHAR(100)--creates a column named ZoningType of the type variable character 100 
+);
+
+--creates table called PropertyUtilities, this also moves a multi valued dependency to its own table
+CREATE TABLE PropertyUtilities (
+    PropertyUtilityID SERIAL PRIMARY KEY,--creates a serial primary key column named PropertyUtilityID
+    PropertyID INT REFERENCES PropertyDetails(PropertyID),--creates a PropertyID column with an integer type that references the PropertyID column in the PropertyDetails table
+    Utility VARCHAR(100)--creates a column named Utility of the type variable character 100 
+);
+
+--alters table named PropertyDetails, deletes the columns in that table named ZoningType and Utility, makes it so multi-valued dependencies are completely eliminated from original table
+ALTER TABLE PropertyDetails DROP COLUMN ZoningType, DROP COLUMN Utility;

@@ -19,3 +19,6 @@ In this part an initial PropertyDetails table was created that satisfies the 1st
 
 ## Part 3
 This part involves transitioning the table from the previous section to 3rd normal form. To do this it is necessary to eliminate transitive dependencies which is when some columns are dependent on non-primary key columns. In the original PropertyDetails table, State, Country, and CityPopulation were all dependent on the city column. To fix this, those columns were moved to a separate table with City as its primary key and they were deleted from the original PropertyDetails table.
+
+## Part 4
+After the 3rd normal form was achieved in the previous part, the table still had not met the criteria for 4th normal form. This is because there were multi-valued dependencies which is when different independent columns both depend on the primary key column. In this case Zoning and Utilities both are multi-valued dependencies so new tables needed to be created for them, and they were both removed from the original table.
