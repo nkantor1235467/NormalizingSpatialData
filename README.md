@@ -22,3 +22,6 @@ This part involves transitioning the table from the previous section to 3rd norm
 
 ## Part 4
 After the 3rd normal form was achieved in the previous part, the table still had not met the criteria for 4th normal form. This is because there were multi-valued dependencies which is when different independent columns both depend on the primary key column. In this case Zoning and Utilities both are multi-valued dependencies so new tables needed to be created for them, and they were both removed from the original table.
+
+## Part 5
+Part 5 involves selecting properties by location.

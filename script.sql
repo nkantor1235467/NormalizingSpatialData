@@ -51,3 +51,17 @@ CREATE TABLE PropertyUtilities (
 
 --alters table named PropertyDetails, deletes the columns in that table named ZoningType and Utility, makes it so multi-valued dependencies are completely eliminated from original table
 ALTER TABLE PropertyDetails DROP COLUMN ZoningType, DROP COLUMN Utility;
+
+--part5
+--Populates PropertyDetails table with location info
+INSERT INTO PropertyDetails (Address, City, GeoLocation)--Inserts Address, City, and GeoLocation info into PropertyDetails
+VALUES ('123 Main St', 'Springfield', ST_GeomFromText('POINT(-89.6501483 39.7817213)', 4326));--Address is 123 Main St, City is Springfield, coordinates are longitude -90, latitude 40
+
+--Selects properties by location
+SELECT Address, City--attributes to be selected are Address and City
+FROM PropertyDetails--table that is being selected from is PropertyDetails
+WHERE ST_DWithin(--selection condition is distance
+    GeoLocation,--GeoLocation field is being used for selection parameters
+    ST_GeomFromText('POINT(-89.6501483 39.7817213)', 4326),--converts point data into a geometry object, will be used for checking distance
+    10000 -- 10km radius from the point above is the geographic area that GeoLocations will be selected from
+);
