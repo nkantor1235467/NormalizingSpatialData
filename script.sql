@@ -21,3 +21,15 @@ CREATE TABLE PropertyDetails (
     GeoLocation GEOMETRY(Point, 4326),--creates column named GeoLocation which is a geometry column containing coordinate data in the 4326 projection
     CityPopulation INT--creates column named CityPopulation of the integer type
 );
+
+--part3
+--creates table called CityDemographics to fix transitive dependencies of the City column
+CREATE TABLE CityDemographics (
+    City VARCHAR(100) PRIMARY KEY,--creates primary key column named City, of variable character 100 type, this should be a primary key because State, Country, and CityPopulation are dependent on it
+    State VARCHAR(50),--creates column named State of variable character 50 type
+    Country VARCHAR(50),--creates column named Country of variable character 50 type
+    CityPopulation INT--creates column named CityPopulation of integer type
+);
+
+--alters table named PropertyDetails, drops the columns in that table named CityPopulation, State, and Country, this removes transitive dependencies from the PropertyDetails table
+ALTER TABLE PropertyDetails DROP COLUMN CityPopulation, DROP COLUMN State, DROP COLUMN Country;

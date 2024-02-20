@@ -16,3 +16,6 @@
 
 ## Part 2
 In this part an initial PropertyDetails table was created that satisfies the 1st and 2nd normal forms. The PropertyID column is the primary key, and it satisfies both the 1st and 2nd normal form requirements because it uniquely identifies each row (satisfying 1st normal form) and is not a composite primary key (satisfying 2nd normal form). 
+
+## Part 3
+This part involves transitioning the table from the previous section to 3rd normal form. To do this it is necessary to eliminate transitive dependencies which is when some columns are dependent on non-primary key columns. In the original PropertyDetails table, State, Country, and CityPopulation were all dependent on the city column. To fix this, those columns were moved to a separate table with City as its primary key and they were deleted from the original PropertyDetails table.
